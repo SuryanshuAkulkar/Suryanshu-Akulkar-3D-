@@ -1,0 +1,22 @@
+/* Video Cards Styling */
+.card-video-wrapper {
+    height: 350px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Isse video card se baahar nahi nikalegi aur perfectly fit ho jayegi */
+    transition: transform 0.5s ease;
+}
+
+.art-card:hover .card-video {
+    transform: scale(1.05); /* Hover karne par zoom effect */
+}
+
+@media (max-width: 768px) {
+    .card-video-wrapper { height: 250px; }
+}
