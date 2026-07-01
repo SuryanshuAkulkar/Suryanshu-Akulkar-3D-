@@ -1,3 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a0a0c !important; /* Isse background zaroor kala (black) ho jayega */
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle at center, #1a153a 0%, #0a0a0c 70%);
+    position: relative;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 8px;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #00e5ff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.tagline {
+    margin: 20px 0 40px;
+    color: #8a8a93;
+    font-weight: 300;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 2px solid #00e5ff;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+.cta-btn:hover {
+    background: #00e5ff;
+    color: #000000;
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.6);
+    transform: translateY(-3px);
+}
+
+/* Portfolio Gallery */
+.portfolio {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    letter-spacing: 5px;
+    margin-bottom: 60px;
+    color: #ffffff;
+    border-bottom: 2px solid #1a153a;
+    padding-bottom: 20px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.art-card {
+    background: #121216;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #23232a;
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.art-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 229, 255, 0.15);
+}
+
+.card-img {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.art-card:hover .card-img {
+    transform: scale(1.05);
+}
+
+.card-info {
+    padding: 25px;
+    background: #121216;
+    transform: translateZ(30px);
+}
+
+.card-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.card-info p {
+    color: #00e5ff;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
 /* Video Cards Styling */
 .card-video-wrapper {
     height: 350px;
@@ -9,14 +146,41 @@
 .card-video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Isse video card se baahar nahi nikalegi aur perfectly fit ho jayegi */
+    object-fit: cover;
     transition: transform 0.5s ease;
 }
 
 .art-card:hover .card-video {
-    transform: scale(1.05); /* Hover karne par zoom effect */
+    transform: scale(1.05);
 }
 
+/* Footer */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background: #050507;
+    border-top: 1px solid #121216;
+}
+
+footer p {
+    color: #8a8a93;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #00e5ff;
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
-    .card-video-wrapper { height: 250px; }
+    .hero-content h1 { font-size: 2.2rem; letter-spacing: 4px; }
+    .card-video-wrapper, .card-img { height: 250px; }
 }
