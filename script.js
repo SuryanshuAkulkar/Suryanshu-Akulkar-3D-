@@ -1,32 +1,56 @@
-// 3D Card Interactive Tilt Effect (Supports both Images and Videos)
-const cards = document.querySelectorAll('.art-card');
+// 1. Custom Glow Cursor Logic
+const cursor = document.querySelector('.custom-cursor');
 
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+// Cursor Hover Effect on Interactive Items
+document.querySelectorAll('.art-card, .cta-btn, .social-links a').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        cursor.style.width = '40px';
+        cursor.style.height = '40px';
+        cursor.style.backgroundColor = 'rgba(0, 229, 255, 0.1)';
+    });
+    item.addEventListener('mouseleave', () => {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+        cursor.style.backgroundColor = 'transparent';
+    });
+});
+
+// 2. 3D Tilt Card Motion
+const cards = document.querySelectorAll('.art-card');
 cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
-        const cardRect = card.getBoundingClientRect();
-        const cardWidth = cardRect.width;
-        const cardHeight = cardRect.height;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - (rect.width / 2);
+        const y = e.clientY - rect.top - (rect.height / 2);
         
-        // Card ke center se mouse ki doori nikalne ke liye
-        const mouseX = e.clientX - cardRect.left - cardWidth / 2;
-        const mouseY = e.clientY - cardRect.top - cardHeight / 2;
+        const angleX = -(y / (rect.height / 2)) * 20; // 20 Degree angle
+        const angleY = (x / (rect.width / 2)) * 20;
         
-        // Card ko maximum 15 degree tak jhukane (tilt) ke liye calculation
-        const angleX = -(mouseY / (cardHeight / 2)) * 15;
-        const angleY = (mouseX / (cardWidth / 2)) * 15;
-        
-        // 3D Rotation apply karna
         card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
     });
     
-    // Jab mouse card se baahar jaye toh card wapas apni jagah seedha ho jaye
     card.addEventListener('mouseleave', () => {
         card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-        card.style.transition = 'transform 0.5s ease';
+        card.style.transition = 'transform 0.6s ease';
     });
-
-    // Mouse andar aate hi smooth transition band karein taaki real-time tilt ho
     card.addEventListener('mouseenter', () => {
         card.style.transition = 'none';
     });
 });
+
+// 3. Scroll Reveal Motion (Smooth Entrance)
+const revealCards = document.querySelectorAll('.scroll-reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, { threshold: 0.15 }); // 15% card dikhte hi animation start hoga
+
+revealCards.forEach(card => observer.observe(card));
